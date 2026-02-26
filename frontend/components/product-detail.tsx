@@ -6,6 +6,7 @@ import Link from "next/link"
 import { ChevronLeft, ShoppingBag, Heart, Check, Minus, Plus, Share2 } from "lucide-react"
 import { type Product, formatPrice, getProductsByCategory } from "@/lib/products"
 import { ProductCard } from "./product-card"
+import { useCart } from "@/contexts/cart-context"
 
 function getWhatsAppUrl(product: Product, selectedColor: string, quantity: number) {
   const message = [
