@@ -4,9 +4,11 @@ import Link from "next/link"
 import { useState } from "react"
 import { Menu, X, ShoppingBag, Search } from "lucide-react"
 import { categories } from "@/lib/products"
+import { useCart } from "@/contexts/cart-context"
 
 export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { itemCount, openCart } = useCart()
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
