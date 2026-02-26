@@ -25,6 +25,8 @@ function getWhatsAppUrl(product: Product, selectedColor: string, quantity: numbe
 export function ProductDetail({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1)
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "")
+  const [isAdding, setIsAdding] = useState(false)
+  const { addItem } = useCart()
 
   const related = getProductsByCategory(product.categorySlug).filter(
     (p) => p.id !== product.id
@@ -33,6 +35,12 @@ export function ProductDetail({ product }: { product: Product }) {
   const discount = product.originalPrice
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0
+
+  const handleAddToCart = () => {
+    setIsAdding(true)
+    addItem(product, quantity, selectedColor)
+    setTimeout(() => setIsAdding(false), 1000)
+  }
 
   return (
     <div className="pt-16">
