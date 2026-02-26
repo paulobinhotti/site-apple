@@ -179,9 +179,15 @@ export function ProductDetail({ product }: { product: Product }) {
             {/* Actions */}
             <div className="mt-8 flex flex-col gap-4">
               <div className="flex gap-3">
-                <button className="flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90">
+                <button 
+                  onClick={handleAddToCart}
+                  disabled={isAdding}
+                  className={`flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-all hover:opacity-90 disabled:opacity-50 ${
+                    isAdding ? "scale-95" : ""
+                  }`}
+                >
                   <ShoppingBag className="h-4 w-4" />
-                  Adicionar ao carrinho
+                  {isAdding ? "Adicionado ao carrinho!" : "Adicionar ao carrinho"}
                 </button>
                 <button
                   aria-label="Adicionar aos favoritos"
