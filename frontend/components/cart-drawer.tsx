@@ -7,6 +7,34 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect } from "react"
 
+function getCartWhatsAppUrl(items: any[], total: number) {
+  const message = [
+    "Ola! Gostaria de finalizar minha compra:",
+    "",
+    "🛒 *ITENS DO CARRINHO:*",
+    "",
+    ...items.map((item) => {
+      const itemTotal = item.price * item.quantity
+      return [
+        `📦 *${item.name}*`,
+        item.selectedColor ? `   Cor: ${item.selectedColor}` : "",
+        `   Quantidade: ${item.quantity}`,
+        `   Preço unitário: ${formatPrice(item.price)}`,
+        `   Subtotal: ${formatPrice(itemTotal)}`,
+        "",
+      ]
+        .filter(Boolean)
+        .join("\n")
+    }),
+    "━━━━━━━━━━━━━━━━━",
+    `💰 *TOTAL: ${formatPrice(total)}*`,
+    "",
+    "Podemos prosseguir com o pagamento?",
+  ].join("\n")
+
+  return "https://wa.me/5548996708490?text=" + encodeURIComponent(message)
+}
+
 export function CartDrawer() {
   const { items, itemCount, total, updateQuantity, removeItem, isOpen, closeCart } = useCart()
 
@@ -21,6 +49,11 @@ export function CartDrawer() {
       document.body.style.overflow = "unset"
     }
   }, [isOpen])
+
+  const handleCheckout = () => {
+    const whatsappUrl = getCartWhatsAppUrl(items, total)
+    window.open(whatsappUrl, "_blank")
+  }
 
   if (!isOpen) return null
 
