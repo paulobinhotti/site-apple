@@ -61,10 +61,16 @@ export function SiteHeader() {
         {/* Mobile menu button */}
         <div className="flex items-center gap-3 lg:hidden">
           <button
+            onClick={openCart}
             aria-label="Carrinho de compras"
-            className="flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground"
+            className="relative flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground"
           >
             <ShoppingBag className="h-4 w-4" />
+            {itemCount > 0 && (
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                {itemCount}
+              </span>
+            )}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
