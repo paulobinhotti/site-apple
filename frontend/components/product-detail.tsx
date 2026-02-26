@@ -19,7 +19,7 @@ function getWhatsAppUrl(product: Product, selectedColor: string, quantity: numbe
     "",
     "Podemos prosseguir com a compra?",
   ].join("\n")
-  return "https://wa.me/5511999999999?text=" + encodeURIComponent(message)
+  return "https://wa.me/5548996708490?text=" + encodeURIComponent(message)
 }
 
 export function ProductDetail({ product }: { product: Product }) {
