@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+import { CartProvider } from '@/contexts/cart-context'
+import { CartDrawer } from '@/components/cart-drawer'
 import './globals.css'
 
 const inter = Inter({
@@ -30,10 +32,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className={`${inter.variable} font-sans antialiased`}>
-        <SiteHeader />
-        <main className="min-h-screen">{children}</main>
-        <SiteFooter />
-        <Analytics />
+        <CartProvider>
+          <SiteHeader />
+          <main className="min-h-screen">{children}</main>
+          <SiteFooter />
+          <CartDrawer />
+          <Analytics />
+        </CartProvider>
       </body>
     </html>
   )
