@@ -50,10 +50,7 @@ export function CartDrawer() {
     }
   }, [isOpen])
 
-  const handleCheckout = () => {
-    const whatsappUrl = getCartWhatsAppUrl(items, total)
-    window.open(whatsappUrl, "_blank")
-  }
+  const whatsappUrl = items.length > 0 ? getCartWhatsAppUrl(items, total) : "#"
 
   if (!isOpen) return null
 
